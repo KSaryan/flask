@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block title %} Application Form {% endblock %}
+
+{%block content %}
+    <h2>Apply For A Postion With Us</h2>
+    <p>
+    We have several positions available. Please choose one below.
+    <br>Also, let us know your full name and salary requirements.
+    <br>We will contact you shortly (especially if you're cheap ;) )
+    </p> 
+
+    <form action="/application-success" method="POST">
+        First Name: <input type="text" name="firstname" required><br>
+        <span>Last Name: </span> <input type="text" name="lastname" required><br>
+        Salary Requirement: $<input type="number" name="salary" required><br>
+        Desired Position:
+        <select name="jobtitle">
+            {% for job in jobs %}
+                <option value={{ job }}>{{ job.replace("-", " ") }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" name="Submit">
+    </form>
+{% endblock %}
